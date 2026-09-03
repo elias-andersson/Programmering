@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kapitel 1 Lektion 1</title>
+</head>
+<body>
+  <script src="http://koda.nu/simple.js">
+
+    var player = {
+        x: 50,
+        y: 200,
+        size: 40,
+        color: "blue",
+        speed: 10
+
+
+    }
+function update () {
+    clearScreen()
+
+    circle(player.x, player.y, player.size, player.color)
+    player.y = player.y + player.speed
+    player.size
+     
+   //player.speed = player.speed * random(-5, 5)
+   console.log(player.speed)
+
+   player.speed = player.speed + 0,98
+
+
+    
+    
+}
+  
+
+//var sky = {
+  //  x: 0, y: 0, totalWidth, height: 300, color: "blue"
+
+//}
+//var grass = {
+ //   x: 0, y: 900, bredd: 1706, height: 350, color: "green"
+//}
+//rectangle(sky.x, sky.y, sky.totalWidth, sky.height, sky.color)
+//rectangle(grass.x, grass.y, grass.bredd, grass.height, grass.color)
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kapitel 1 Lektion 1</title>
+</head>
+<body>
+  <script src="http://koda.nu/simple.js">
+
+  rectangle(200, 200, 400, 250, "blue")  //bakgrund
+  line(400, 200, 400, 450, 20, "yellow")
+  line(200, 325, 600, 325, 20, "yellow")
+  rectangle(200, 175, 20, 500, "grey")  //flaggstång
+  circle(210, 185, 20, "gold")
+  text(250, 50, 50, "Sveriges stolthet", "black")
+
+  var color = "pink";
+  var storlek = 30;
+
+  ring(800, 400, 200, 30, color)
+ring(770, 430, 170, storlek, "red" )
+var face = {
+    x: random(totalHeight, totalWidth - 100),
+    y: random(0, 800), 
+    color: mixColor(random(256), random(256), random(256)),
+    mun: 50
+}
+circle(face.x, face.y, 100, face.color)
+circle(face.x - 50, face.y - 50, 25, "black")
+circle(face.x + 50, face.y - 50, 25, "black")
+rectangle(face.x - 20, face.y + 30, face.mun, 20, "black")
+  </script>
+</body>
+</html>
