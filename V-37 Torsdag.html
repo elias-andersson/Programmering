@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Intro</title>
+</head>
+<body>
+  <script src="http://koda.nu/simple.js">
+  
+
+    var player = {
+      x: 50,
+      y: 200, 
+      size: 40,
+      color: "blue",
+      speedX: 3,
+      direction: 1
+    }
+
+    var x = 0;
+    var bounce = 1
+
+    function update() {
+      clearScreen();
+      
+      picture(x, 0, "https://images6.alphacoders.com/860/860645.png", totalWidth * 2, totalHeight)
+      x--
+
+      circle(player.x, player.y, player.size, player.color)
+      player.x = player.x + player.speedX * player.direction
+
+      text(50, 50, 40, "Antal bounce kvar är: " + bounce, "white")
+
+      if(player.x + player.size > totalWidth) {
+        player.direction = -1
+        bounce--
+        player.color = "green"
+        player.y = player.y + 20
+      }
+
+      if(player.x - player.size < 0) {
+        player.direction = 1
+        bounce--
+        player.color = "red"
+        player.x = random(0, totalWidth)
+      }
+
+      if(bounce <= 0) {
+        picture(player.x - player.size, player.y - player.size, "https://img.magnific.com/gratis-psd/valdsam-explosion-en-dramatisk-bild-av-intensiv-forbranning-och-skrap_191095-81825.jpg", player.size * 2, player.size * 2)
+      }
+
+    }
+    
+  </script>
+</body>
+</html>
