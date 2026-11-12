@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Intro</title>
+</head>
+<body>
+  <script src="http://koda.nu/simple.js">
+    
+    var player = {x: 100, y: 200, size: 30, color: "blue", speed: 3}
+    var ghost1 =  {x: 1000, y: 270, speed: 1}
+    var ghost2 =  {x: 450, y: 340, speed: 1}
+
+    
+    
+    function drawGhost(x, y){
+        save();
+        translate(x, y)
+    circle(100, 200, 30, "lightgrey")
+    rectangle(70, 200, 60, 90, "lightgrey")
+    circle(90, 190, 5, "red")
+    circle(110, 190, 5, "red")
+    restore();
+    }
+
+    function update() {
+       clearScreen();
+       drawGhost(ghost1.x, ghost1.y)
+       drawGhost(ghost2.x, ghost2.y)
+
+       circle(player.x, player.y, player.size, player.color)
+         
+       
+       if(keyboard.d) {
+     player.x = player.x + player.speed
+    }
+    if(keyboard.a) {
+     player.x = player.x - player.speed
+    }
+    if(keyboard.w) {
+     player.y = player.y - player.speed
+    }
+    if(keyboard.s) {
+     player.y = player.y + player.speed
+    }
+    
+    
+    if (ghost1.x < player.x) {
+    ghost1.x = ghost1.x + ghost1.speed;
+  }
+  if (ghost1.x > player.x) {
+    ghost1.x = ghost1.x - ghost1.speed;
+  }
+  if (ghost1.y < player.y) {
+    ghost1.y = ghost1.y + ghost1.speed;
+  }
+  if (ghost1.y > player.y) {
+    ghost1.y = ghost1.y - ghost1.speed
+}
+    if(distance(player, ghost1)< 40) {
+        text(280, 250, 50, "GAME OVER!", "red")
+        stopUpdate();
+    }
+}
+    
+  
+    
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
