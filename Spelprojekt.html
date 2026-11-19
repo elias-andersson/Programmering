@@ -1,4 +1,18 @@
-// ===== MIN PROJEKTPLAN =====
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Intro</title>
+</head>
+<body>
+  <script src="http://koda.nu/simple.js"></script>
+    <script>
+      // ===== MIN PROJEKTPLAN =====
 // Spelidé: (skriv en kort beskrivning, 2-4 meningar)
 //Jag har en idé om att göra ett pac man spel. När man kommer in på sidan ska det stå START GAME press space. 
 //När man hara gjort det ska själva spelytan komma upp och man börjar spela. Man vinner efter att man har ätit
@@ -26,7 +40,7 @@
 // 1. fler nivåer
 // 2. Spökena blir snabbare efter en viss tid om man fortfarande inte har vunnit än.
 // 3. munnen riktas åt det hållet som man går.
-// 4. 
+// 4. ögonen på spökena riktas åt det hållet dom går. 
 // 5. 
 
 // --- FÖRBÄTTRINGAR ATT GÖRA SEN ---
@@ -50,27 +64,38 @@
 //Vunnen runda
 
 
+    var pacman = {x: 500, y: 700, size: 30, color: "yellow"}
+    var enemies = [
+      {x: 800, y: 400, color: "red", speed: 2}, //blinky
+      {x: 900, y: 400, color: "#2962FF", speed: 2}, //inky
+      {x: 1000, y: 400, color: "orange", speed: 2}, //clyde
+      {x: 700, y: 400, color: "pink", speed: 2} //pinky
+    ]
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Intro</title>
-</head>
-<body>
-  <script src="http://koda.nu/simple.js">
+    function drawPacman(){
+      circle(pacman.x, pacman.y, pacman.size, pacman.color)
+      triangle(pacman.x, pacman.y, pacman.x + 30, pacman.y - 20, pacman.x + 30, pacman.y + 20, "black")
+    }
+
+    function drawEnemies(){
+      for(var i=0;i < enemies.length;i++){
+        drawEnemy(enemies[i].x, enemies[i].y,enemies[i].color)
+    }
+  }
     
-    var pacman = {x: totalWidth / 2, y: 400, size: 30, color: "yellow"}
-    var enemy1 = {x: 850, y: 400}
-
-    function drawEnemy(x, y) {
-        circle(x, y, 25, "red")
-        rectangle(x - 25, y, x - 800, y - 350)
-        oval(840, 400, 7, 9, "white")
-        oval(860, 400, 7, 9, "white")
-        circle(836, 400, 4, "blue")
-        circle(856, 400, 4, "blue")
+    function drawEnemy(x, y, color) {
+      save();
+      translate(x, y);  
+      circle(0, 0, 25, color)
+        rectangle(- 25, 0, 50,+ 50, color)
+        oval(- 10, 0, 7, 9, "white")
+        oval(+ 10, 0, 7, 9, "white")
+        circle(- 14, 0, 4, "blue")
+        circle(+ 6, 0, 4, "blue")
+        oval(- 15, + 50, 6, 9, "black")
+        oval(0, + 50, 6, 9, "black")
+        oval(+ 15, + 50, 6, 9, "black")
+        restore();
 
     }
     function oval(x, y, rx, ry, color){
@@ -85,11 +110,12 @@
     function update() {
         clearScreen()
         fill("black")
+        drawEnemies()
+        drawPacman()
+     
+          
+        }
 
-        drawEnemy(enemy1.x, enemy1.y)
-        
-
-    }
 
     
 
