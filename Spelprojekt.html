@@ -64,13 +64,14 @@
 //Vunnen runda
 
 
-    var pacman = {x: 500, y: 700, size: 30, color: "yellow"}
+    var pacman = {x: 800, y: 600, size: 30, speed: 4, color: "yellow"}
     var enemies = [
       {x: 800, y: 400, color: "red", speed: 2}, //blinky
       {x: 900, y: 400, color: "#2962FF", speed: 2}, //inky
       {x: 1000, y: 400, color: "orange", speed: 2}, //clyde
       {x: 700, y: 400, color: "pink", speed: 2} //pinky
     ]
+    var gameStarted = false
 
     function drawPacman(){
       circle(pacman.x, pacman.y, pacman.size, pacman.color)
@@ -105,16 +106,64 @@
         circle(0, 0, ry, color);
         restore();
     }
+    function touches(a, b) {
+      return distance(a,b) < 60;
+    }
     
 
     function update() {
         clearScreen()
         fill("black")
+        
+        if(!gameStarted) {
+          fill("black")
+          text(700, 400, 50, "PAC-MAN", "yellow");
+          text(600, 475, 30, "press space to start", "white")
+          if(keyboard.space) {
+            gameStarted = true;
+            
+          }
+          return;
+
+        }
         drawEnemies()
         drawPacman()
-     
-          
+
+        if(keyboard.w){
+          pacman.y = pacman.y - pacman.speed
         }
+        if(keyboard.s) {
+          pacman.y = pacman.y + pacman.speed
+        }
+        if(keyboard.a) {
+          pacman.x = pacman.x - pacman.speed
+        }
+        if(keyboard.d) {
+          pacman.x = pacman.x + pacman.speed
+        }
+        for (var i = 0; i < enemies.length; i++) {
+
+    // STEG 1: jaga-koden kommer här
+    if(enemies[i].x < pacman.x) {
+        enemies[i].x = enemies[i].x + enemies[i].speed;
+    }
+    if(enemies[i].x > pacman.x) {
+        enemies[i].x = enemies[i].x - enemies[i].speed;
+    }
+    if(enemies[i].y < pacman.y) {
+        enemies[i].y = enemies[i].y + enemies[i].speed;
+    }
+     if(enemies[i].y > pacman.y) {
+        enemies[i].y = enemies[i].y - enemies[i].speed;
+    }
+    
+     if(touches(pacman, enemies[i])) {
+      text(675, 400, 50, "GAME OVER", "red")
+      stopUpdate()
+     }   
+  }
+
+      }      
 
 
     
