@@ -65,7 +65,7 @@
 
 
     var pacman = {x: 800, y: 600, size: 30, speed: 4, color: "yellow"}
-    var enemies = [
+    var enemies = [         //arrayer till spökena
       {x: 800, y: 400, color: "red", speed: 2}, //blinky
       {x: 900, y: 400, color: "#2962FF", speed: 2}, //inky
       {x: 1000, y: 400, color: "orange", speed: 2}, //clyde
@@ -73,18 +73,18 @@
     ]
     var gameStarted = false
 
-    function drawPacman(){
+    function drawPacman(){          //hur pacman är uppbyggd
       circle(pacman.x, pacman.y, pacman.size, pacman.color)
       triangle(pacman.x, pacman.y, pacman.x + 30, pacman.y - 20, pacman.x + 30, pacman.y + 20, "black")
     }
 
-    function drawEnemies(){
+    function drawEnemies(){        //loop så att det blir så många spöken jag har gjort i arrayen
       for(var i=0;i < enemies.length;i++){
         drawEnemy(enemies[i].x, enemies[i].y,enemies[i].color)
     }
   }
     
-    function drawEnemy(x, y, color) {
+    function drawEnemy(x, y, color) {       //hur spökena är uppbyggda
       save();
       translate(x, y);  
       circle(0, 0, 25, color)
@@ -99,7 +99,7 @@
         restore();
 
     }
-    function oval(x, y, rx, ry, color){
+    function oval(x, y, rx, ry, color){     //funktion till en oval
         save();
         translate(x, y);
         scale(rx / ry, 1);
@@ -115,7 +115,7 @@
         clearScreen()
         fill("black")
         
-        if(!gameStarted) {
+        if(!gameStarted) {         //meny innan man börjar spelet
           fill("black")
           text(700, 400, 50, "PAC-MAN", "yellow");
           text(600, 475, 30, "press space to start", "white")
@@ -129,7 +129,7 @@
         drawEnemies()
         drawPacman()
 
-        if(keyboard.w){
+        if(keyboard.w){           //kontroller till pacman
           pacman.y = pacman.y - pacman.speed
         }
         if(keyboard.s) {
@@ -143,12 +143,12 @@
         }
         for (var i = 0; i < enemies.length; i++) {
 
-    // STEG 1: jaga-koden kommer här
+     
     if(enemies[i].x < pacman.x) {
         enemies[i].x = enemies[i].x + enemies[i].speed;
     }
     if(enemies[i].x > pacman.x) {
-        enemies[i].x = enemies[i].x - enemies[i].speed;
+        enemies[i].x = enemies[i].x - enemies[i].speed;        //spökena följer efter pacman
     }
     if(enemies[i].y < pacman.y) {
         enemies[i].y = enemies[i].y + enemies[i].speed;
@@ -157,7 +157,7 @@
         enemies[i].y = enemies[i].y - enemies[i].speed;
     }
     
-     if(touches(pacman, enemies[i])) {
+     if(touches(pacman, enemies[i])) {        //game over när pacman nuddar spökena
       text(675, 400, 50, "GAME OVER", "red")
       stopUpdate()
      }   
