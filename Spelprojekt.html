@@ -64,12 +64,12 @@
 //Vunnen runda
 
 
-    var pacman = {x: 800, y: 600, size: 30, speed: 4, color: "yellow"}
+    var pacman = {x: 800, y: 600, size: 30, speed: 5, color: "yellow"}
     var enemies = [         //arrayer till spökena
-      {x: 800, y: 400, color: "red", speed: 2}, //blinky
-      {x: 900, y: 400, color: "#2962FF", speed: 2}, //inky
-      {x: 1000, y: 400, color: "orange", speed: 2}, //clyde
-      {x: 700, y: 400, color: "pink", speed: 2} //pinky
+      {x: 780, y: 410, color: "red", speed: 3}, //blinky
+      {x: 850, y: 410, color: "#2962FF", speed: 2.5 }, //inky
+      {x: 920, y: 410, color: "orange", speed: 2}, //clyde
+      {x: 710, y: 410, color: "pink", speed: 2} //pinky
     ]
     var gameStarted = false
 
@@ -126,6 +126,15 @@
           return;
 
         }
+        
+        //väggar till hela banan
+        rectangle(630, 480, 370, 20, "blue")
+        rectangle(630, 480, 20, - 120, "blue")
+        rectangle(980, 480, 20, - 120, "blue")
+        rectangle(630, 350, 100, 20, "blue")
+        rectangle(1000, 350, - 100, 20, "blue")
+
+        
         drawEnemies()
         drawPacman()
 
@@ -141,29 +150,32 @@
         if(keyboard.d) {
           pacman.x = pacman.x + pacman.speed
         }
-        for (var i = 0; i < enemies.length; i++) {
+    //      for (var i = 0; i < enemies.length; i++) {
 
      
-    if(enemies[i].x < pacman.x) {
-        enemies[i].x = enemies[i].x + enemies[i].speed;
-    }
-    if(enemies[i].x > pacman.x) {
-        enemies[i].x = enemies[i].x - enemies[i].speed;        //spökena följer efter pacman
-    }
-    if(enemies[i].y < pacman.y) {
-        enemies[i].y = enemies[i].y + enemies[i].speed;
-    }
-     if(enemies[i].y > pacman.y) {
-        enemies[i].y = enemies[i].y - enemies[i].speed;
-    }
+    //  if(enemies[i].x < pacman.x) {
+    //     enemies[i].x = enemies[i].x + enemies[i].speed;
+    //  }
+    //  if(enemies[i].x > pacman.x) {
+    //     enemies[i].x = enemies[i].x - enemies[i].speed;        //spökena följer efter pacman
+    // }
+    //  if(enemies[i].y < pacman.y) {
+    //     enemies[i].y = enemies[i].y + enemies[i].speed;
+    // }
+    //   if(enemies[i].y > pacman.y) {
+    //      enemies[i].y = enemies[i].y - enemies[i].speed;
+    //  }
     
-     if(touches(pacman, enemies[i])) {        //game over när pacman nuddar spökena
-      text(675, 400, 50, "GAME OVER", "red")
-      stopUpdate()
-     }   
+    //  if(touches(pacman, enemies[i])) {        //game over när pacman nuddar spökena
+    //   text(675, 400, 50, "GAME OVER", "red")
+    //   stopUpdate()
+    //  }   
   }
 
-      }      
+
+
+
+        
 
 
     
